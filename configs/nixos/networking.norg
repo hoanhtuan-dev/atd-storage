@@ -1,0 +1,8 @@
+* Networking manager
+
+@code bash
+
+  # connect thu cong
+nmcli device wifi connect <SSID> passwordnmcli device wifi connect <SSID> password <nhap pass>
+
+@end

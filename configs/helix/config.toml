@@ -1,0 +1,77 @@
+
+theme = "gruvbox_dark_soft"
+
+[editor]
+line-number = "relative"
+# mouse = true
+true-color = true
+bufferline = "always"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+# hidden = true
+
+# [editor.soft-wrap]
+# enable = true
+# max-wrap = 25
+
+[keys.normal]
+# Ctrl keys
+C-s = ":u"
+C-o = ":config-open"
+C-r = ":config-reload"
+
+# Cụôn trang lên xuông
+C-j = ["move_line_down", "scroll_down"]
+C-k = ["move_line_up", "scroll_up"]
+
+# Alt keys
+A-s = ":u"
+A-q = ":q!"
+
+C-f = ":set-language"
+
+C-S-v = ":clipboard-paste-before"
+C-v = ":clipboard-paste-after"
+C-c = ":clipboard-yank"
+
+esc = [  "collapse_selection", "keep_primary_selection" ]
+
+########### Làm cho giống vim #########
+
+x = "delete_selection"
+S-v = "extend_line_below"
+
+[keys.normal.y]
+y = ["extend_line_below", "yank"]
+i = ["yank"]
+
+[keys.normal.d]
+d = ["extend_line_below", "delete_selection"]
+i = "delete_selection"
+
+[keys.normal.space]
+q = ":q!"
+x = ":bc!"
+
+########## Hết ##########
+
+[keys.insert]
+A-x = "normal_mode"
+j = { j = "normal_mode" }
+
+[editor.statusline]
+left = ["mode", "separator", "spinner", "file-name"]
+# center = ["file-name"]
+right = ["diagnostics", "separator", "selections", "position", "file-encoding", "file-line-ending", "separator", "file-type"]
+separator = "│"
+mode.normal = "N"
+mode.insert = "I"
+mode.select = "S"
+
+[keys.select]
+

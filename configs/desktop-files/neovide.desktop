@@ -1,0 +1,8 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Code Nvim
+Exec=/home/anhtuan/Applications/neovide
+Icon=/home/anhtuan/Applications/icons/neovide.png

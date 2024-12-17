@@ -1,0 +1,48 @@
+
+[manager]
+
+[preview]
+
+[opener]
+edit = [
+	{ run = 'hx "$@"', block = true },
+]
+
+# krita = [
+# 	{ run = 'krita "$@"', block = true },
+# ]
+#
+# inkscape = [
+# 	{ run = 'inkscape "$@"', block = true },
+# ]
+
+nvim = [
+	{ run = 'nvim "$@"', block = true },
+]
+
+play = [
+	{ run = 'mpv "$@"', orphan = true, for = "unix" },
+]
+
+open = [
+	{ run = 'xdg-open "$@"', desc = "Open" },
+]
+
+img = [
+	{ run = 'swayimg "$@"', block = true},
+  { run = 'feh "$@"', block = true}
+]
+
+[open]
+rules = [
+	{ mime = "text/*", use = ["edit", "nvim"] },
+	{ mime = "video/*", use = "play" },
+	{ mime = "image/*", use = ["img", "open"] },
+
+	# { mime = "application/json", use = "edit" },
+	{ name = "*.json", use = "nvim" },
+	{ name = "*.norg", use = "nvim" },
+
+	# Multiple openers for a single rule
+	{ name = "*.html", use = [ "open", "edit" ] },
+]

@@ -1,0 +1,15 @@
+# image=~/Pictures/HinhNen/tay-bac-nghe-an-01.jpg
+show-failed-attempts
+color=#28282890
+# This is important so fingerprint works
+# ignore-empty-password
+font=SourceCodePro
+effect-blur=2x3
+grace-no-mouse
+grace-no-touch
+scaling=fill
+indicator
+indicator-radius=200
+daemonize
+grace=5
+clock

@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-fill '/home/anhtuan/Pictures/CongTrinh/1723000037463.jpg' 

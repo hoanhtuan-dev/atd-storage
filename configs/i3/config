@@ -1,0 +1,221 @@
+# exec_always feh --bg-fill ~/Pictures/HinhNen/bing-001.webp
+# exec --no-startup-id feh --bg-fill ~/Pictures/CongTrinh/caphe-01.jpg
+exec --no-startup-id feh --bg-fill ~/Pictures/CongTrinh/1723000037463.jpg
+
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
+
+set $mod Mod4
+
+font pango:JetBrainsMono Nerd Font 10
+
+# Bắt đầu XDG tự khởi động các tệp .desktop bằng dex. Xem thêm
+exec --no-startup-id dex --autostart --environment i3
+
+# màn hình trước khi tạm dừng. Sử dụng phiên khóa loginctl để khóa màn hình của bạn.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# NetworkManager là cách phổ biến nhất để quản lý mạng không dây trên Linux,
+# và nm-applet là GUI khay hệ thống độc lập với môi trường máy tính để bàn dành cho nó.
+exec --no-startup-id nm-applet
+
+# Sử dụng Pactl để điều chỉnh âm lượng trong PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Sử dụng Mouse+$mod để kéo các cửa sổ nổi đến vị trí mong muốn
+floating_modifier $mod
+
+# di chuyển các cửa sổ xếp kề bằng cách kéo và thả bằng cách nhấp chuột trái vào thanh tiêu đề,
+# hoặc nhấp chuột trái vào bất kỳ đâu trong cửa sổ trong khi giữ phím điều chỉnh nổi.
+tiling_drag modifier titlebar
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+# kill focused window
+bindsym $mod+Shift+q kill
+bindsym Ctrl+q kill
+
+# Gaps
+for_window [class=".*"] border pixel 0
+
+gaps inner 10
+gaps outer 0
+smart_gaps on
+
+smart_borders on
+smart_borders no_gaps
+hide_edge_borders both
+
+# bindsym $mod+d exec --no-startup-id dmenu_run
+bindcode $mod+40 exec "rofi -modi drun,run -show drun -theme gruvbox-dark -show-icon"
+
+#Đây là thiết lập cho qwerty
+set $up l
+set $down k
+set $left j
+set $right semicolon
+
+# change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+j move up
+# bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# thay đổi tiêu điểm giữa các cửa sổ xếp chồng / nổi
+bindsym $mod+space focus mode_toggle
+
+# tập trung vào vùng chứa chính
+# bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# Chúng tôi sử dụng các biến để tránh lặp lại tên ở nhiều nơi.
+set $ws1 "Dev   "
+set $ws2 "Internet  "
+set $ws3 "Atd 󰄛 "
+set $ws4 "Media 󰕼 "
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "Other ♥ "
+
+# chuyển sang không gian làm việc
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Bạn đã nhấn phím tắt thoát ?' -B 'Thoát' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # trở lại bình thường: Enter hoặc Escape hoặc $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# set primary gruvbox colorscheme colors
+set $purple #b16286
+set $binding_mode #b16286
+
+set $statusline_light #EBDBB2
+set $statusline #1d2021 
+set $separator #1d2021
+set $primary_light #98971a
+set $primary #1d2021
+set $active_light #98971A
+set $active #1d2021
+set $warning #d79921
+set $success #689d68
+set $bg_dark #1d2021
+set $error #cc241d
+set $info #458588
+set $bg_dark #282828
+set $bg #4ce36f
+
+# Khởi động i3bar để hiển thị thanh không gian làm việc (cộng với thông tin hệ thống i3status)
+bar {
+        height 32
+        position top
+        font pango:JetBrainsMono Nerd Font 11
+        tray_padding 6
+        status_command i3status -t
+
+        colors {
+            separator  $separabbtor
+            statusline $statusline
+            background $bg
+            
+            #----------------- border  background text
+            focused_workspace  $bg     $bg_dark  $statusline_light
+            active_workspace   $bg     $bg       $statusline
+            inactive_workspace $bg     $bg       $statusline
+            urgent_workspace   $bg     $bg       $error
+            binding_mode       $bg     $bg       $binding_mode
+
+        }
+}
+
+# -- ATD -- #
+bindsym $mod+b exec qutebrowser --untrusted-args
+bindsym $mod+Ctrl+Delete exec i3-msg exit
+bindsym $mod+t exec neovide
+
+
